@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            font-family: 'Open Sans', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255,255,255,0.97);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(238,156,167,0.2);
+            padding: 2.5rem 1.5rem 2rem 1.5rem;
+            max-width: 390px;
+            width: 95%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .heart {
+            font-size: 3rem;
+            color: #ee9ca7;
+            animation: pulse 1.2s infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1);}
+            50% { transform: scale(1.15);}
+            100% { transform: scale(1);}
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ee9ca7;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ee9ca7;
+            margin: 1rem auto 1.2rem auto;
+            box-shadow: 0 4px 16px rgba(238,156,167,0.15);
+        }
+        p {
+            color: #444;
+            font-size: 1.08rem;
+            margin-bottom: 1.2rem;
+        }
+        .button {
+            background: linear-gradient(90deg, #ee9ca7 0%, #ffdde1 100%);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 0.7rem 2.2rem;
+            font-size: 1.1rem;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(238,156,167,0.18);
+            transition: background 0.3s;
+            margin-bottom: 1.2rem;
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
+        }
+        .reasons {
+            display: none;
+            margin-top: 1.2rem;
+            text-align: left;
+            padding-left: 0.5rem;
+            animation: fadeIn 1s;
+        }
+        .reasons h2 {
+            font-family: 'Pacifico', cursive;
+            color: #ee9ca7;
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+        }
+        .reasons ul {
+            padding-left: 1.2rem;
+            color: #d16ba5;
+            font-size: 1.05rem;
+        }
+        .reasons ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* Floating hearts */
+        .floating-heart {
+            position: fixed;
+            bottom: -40px;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: floatUp 4s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1);}
+            80% { opacity: 0.8;}
+            100% { transform: translateY(-100vh) scale(1.3); opacity: 0;}
+        }
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #fffbe9 60%, #ffe3fa 100%);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: sparkle-float 2.5s linear forwards;
+        }
+        @keyframes sparkle-float {
+            0% {
+                opacity: 0.7;
+                transform: scale(0.7) translateY(0);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.2) translateY(-30px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-60px);
+            }
+        }
+        @media (max-width: 600px) {
+            html, body {
+                font-size: 15px !important;
+            }
+            .container {
+                padding: 0.7rem 0.1rem 1.1rem 0.1rem;
+                max-width: 100vw;
+                min-width: 0;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.7rem;
+            }
+            .photo {
+                width: 70px;
+                height: 70px;
+                margin: 0.7rem auto 1rem auto;
+            }
+            .button {
+                font-size: 1rem !important;
+                padding: 0.7rem 1.2rem !important;
+                margin-bottom: 0.7rem;
+            }
+            #quiz-box {
+                font-size: 1rem !important;
+            }
+            #quiz-question {
+                font-size: 1rem !important;
+            }
+            #quiz-result {
+                font-size: 1rem !important;
+            }
+            #secret-message {
+                font-size: 1rem !important;
+            }
+            p, li {
+                font-size: 0.98rem !important;
+            }
+            #quiz-box {
+                padding: 1rem 0.2rem !important;
+                max-width: 98vw !important;
+            }
+            #quiz-overlay {
+                align-items: flex-start !important;
+                padding-top: 2vh;
+            }
+            #forgive-message {
+                padding: 1.1rem 0.3rem !important;
+                max-width: 95vw !important;
+            }
+            #car-scene {
+                width: 98vw !important;
+                max-width: 340px;
+                min-width: 0;
+            }
+            #scratch-card {
+                width: 95vw !important;
+                min-width: 0;
+                max-width: 340px;
+                height: 70px !important;
+            }
+            #secret-message {
+                font-size: 1rem !important;
+                padding: 0 0.5rem;
+            }
+        }
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        #quiz-overlay,
+        #forgive-overlay {
+            overflow-y: auto !important;
+            max-height: 100vh !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>For My Beautiful Girl</h1>
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=400&h=400&facepad=2" alt="Your Photo" class="photo">
+        <p id="typewriter"></p>
+        <button class="button" onclick="showReasons()">Tap for a surprise</button>
+        <div class="reasons" id="reasons">
+            <h2>5 Reasons I Love You</h2>
+            <ul id="reasons-list"></ul>
+        </div>
+        <button class="button" onclick="showCompliment()">Get a Compliment</button>
+        <p id="compliment" style="color:#d16ba5;font-weight:bold;"></p>
+        <!-- Quiz Button -->
+        <button id="quiz-btn" class="button" style="margin-top:1rem;">Quiz: How well do you know me?</button>
+
+        <!-- Quiz Modal Overlay -->
+        <div id="quiz-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:2000; align-items:center; justify-content:center;">
+          <div id="quiz-box" style="background:#fff6f6; border-radius:18px; box-shadow:0 4px 24px #ee9ca733; padding:2rem 1.2rem; max-width:340px; text-align:center; font-family:'Open Sans',sans-serif; margin:auto;">
+            <div id="quiz-question" style="font-size:1.15rem; color:#d16ba5; margin-bottom:1.2rem;"></div>
+            <div id="quiz-options" style="margin-bottom:1.2rem;"></div>
+            <button id="quiz-next" class="button" style="display:none;">Next</button>
+            <button id="quiz-close" class="button" style="margin-top:1rem;">Close</button>
+            <div id="quiz-result" style="margin-top:1.2rem; color:#ee9ca7; font-family:'Pacifico',cursive; font-size:1.2rem;"></div>
+            <!-- Progress Bar -->
+            <div id="quiz-progress" style="height:10px;background:#ffe3fa;border-radius:5px;overflow:hidden;margin:1rem 0;">
+              <div id="quiz-progress-bar" style="height:100%;width:0;background:#ee9ca7;transition:width 0.5s;"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Forgive Animation Overlay -->
+    <div id="forgive-overlay" style="display:none; position:fixed; inset:0; background:rgba(255,255,255,0.92); z-index:100; align-items:center; justify-content:center; flex-direction:column;">
+        <div id="car-scene" style="position:relative; width:320px; height:180px; margin-bottom:2rem;">
+            <!-- Car SVG -->
+            <div id="car" style="position:absolute; left:-180px; bottom:30px; transition:left 2.2s cubic-bezier(.68,-0.55,.27,1.55);">
+                <svg width="180" height="70" viewBox="0 0 180 70">
+                    <rect x="30" y="30" width="110" height="30" rx="12" fill="#ee9ca7"/>
+                    <rect x="50" y="10" width="70" height="30" rx="10" fill="#fff6f6" stroke="#ee9ca7" stroke-width="2"/>
+                    <circle cx="50" cy="60" r="13" fill="#444"/>
+                    <circle cx="120" cy="60" r="13" fill="#444"/>
+                    <circle cx="50" cy="60" r="7" fill="#fff"/>
+                    <circle cx="120" cy="60" r="7" fill="#fff"/>
+                    <!-- Driver (head) -->
+                    <circle id="driver-head" cx="70" cy="28" r="8" fill="#f7c59f" style="opacity:0; transition:opacity 0.7s;"/>
+                </svg>
+            </div>
+        </div>
+        <div id="forgive-message" style="display:none; background: #fff6f6; border-radius:18px; box-shadow:0 4px 24px #ee9ca733; padding:2rem 1.2rem; max-width:320px; text-align:center; font-family:'Open Sans',sans-serif;">
+            <div style="font-family:'Pacifico',cursive; color:#ee9ca7; font-size:1.3rem; margin-bottom:1rem;">I came all this way just to say...</div>
+            <div style="font-size:1.1rem; color:#d16ba5; margin-bottom:1.5rem;">
+                Will you forgive me? <br>Because you mean the world to me. 💖
+            </div>
+            <div id="forgive-btns" style="opacity:0; transition:opacity 0.7s;">
+                <button id="yes-btn" class="button" style="margin-right:1.2rem;">Yes</button>
+                <button id="no-btn" class="button" style="position:relative;">No</button>
+            </div>
+        </div>
+    </div>
+    <canvas id="scratch-card" width="320" height="100" style="margin:2rem auto;display:block;border-radius:18px;box-shadow:0 2px 12px #ee9ca7;"></canvas>
+    <div id="secret-message" style="display:none;text-align:center;font-size:1.2rem;color:#d16ba5;font-family:'Pacifico',cursive;">You are my everything! 💖</div>
+    <script>
+        // Floating hearts animation
+        const heartColors = ['#ee9ca7', '#ffdde1', '#d16ba5', '#fff6f6'];
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+            heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 700);
+
+        // Reasons reveal
+        const reasons = [
+            "Your smile brightens my darkest days.",
+            "You always believe in me, even when I doubt myself.",
+            "Every moment with you feels magical.",
+            "You make me want to be a better person.",
+            "I love you more every single day."
+        ];
+        function showReasons() {
+            const list = document.getElementById('reasons-list');
+            list.innerHTML = '';
+            reasons.forEach(reason => {
+                const li = document.createElement('li');
+                li.textContent = reason;
+                list.appendChild(li);
+            });
+            document.getElementById('reasons').style.display = 'block';
+        }
+
+        // Compliments
+        const compliments = [
+            "You are my sunshine on a cloudy day.",
+            "Your laugh is my favorite sound.",
+            "You make every day better.",
+            "You are beautiful inside and out.",
+            "I am so lucky to have you."
+        ];
+        function showCompliment() {
+            const c = compliments[Math.floor(Math.random() * compliments.length)];
+            document.getElementById('compliment').textContent = c;
+        }
+        showCompliment();
+        setInterval(showCompliment, 5000);
+
+        // Typewriter effect for the message
+        const message = `I know you’re mad at me, and I’m truly sorry.
+        You are the light of my life, and I miss your smile more than anything.
+        Please forgive me. I promise to always cherish you and make you happy.
+        I love you more than words can say. 💖`;
+
+        let i = 0;
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("typewriter").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, 35);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Sparkle/star animation
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = (10 + Math.random() * 80) + 'vh';
+            sparkle.style.width = sparkle.style.height = (6 + Math.random() * 8) + 'px';
+            sparkle.style.opacity = 0.5 + Math.random() * 0.5;
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 2500);
+        }
+        setInterval(createSparkle, 300);
+
+        // Forgive animation logic
+        setTimeout(() => {
+            // Show overlay
+            const overlay = document.getElementById('forgive-overlay');
+            overlay.style.display = 'flex';
+
+            // Animate car in
+            const car = document.getElementById('car');
+            setTimeout(() => {
+                car.style.left = '60px';
+            }, 300);
+
+            // Show driver head after car stops
+            setTimeout(() => {
+                document.getElementById('driver-head').style.opacity = 1;
+            }, 2300);
+
+            // Show message after driver appears
+            setTimeout(() => {
+                document.getElementById('forgive-message').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('forgive-btns').style.opacity = 1;
+                }, 900);
+            }, 3200);
+        }, 15000);
+
+        // Yes/No button logic (inside overlay)
+        document.getElementById('yes-btn').onclick = function() {
+            // Hide the overlay and reset car/driver/message/buttons for next time
+            document.getElementById('forgive-overlay').style.display = 'none';
+            document.getElementById('car').style.left = '-180px';
+            document.getElementById('driver-head').style.opacity = 0;
+            document.getElementById('forgive-message').style.display = 'none';
+            document.getElementById('forgive-btns').style.opacity = 0;
+        };
+
+        // Make the "No" button run away!
+        const noBtn = document.getElementById('no-btn');
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', moveNoButton);
+
+        function moveNoButton() {
+            const btns = document.getElementById('forgive-btns');
+            const btnRect = noBtn.getBoundingClientRect();
+            const btnsRect = btns.getBoundingClientRect();
+            const maxLeft = btns.offsetWidth - noBtn.offsetWidth - 10;
+            const maxTop = btns.offsetHeight - noBtn.offsetHeight - 10;
+
+            const left = Math.random() * maxLeft;
+            const top = Math.random() * maxTop;
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = left + 'px';
+            noBtn.style.top = top + 'px';
+        }
+
+        // Quiz functionality
+        const quizData = [
+          {
+            question: "What is my favorite color?",
+            options: ["black", "nave blue", "Green", "Yellow"],
+            answer: 1
+          },
+          {
+            question: "What is my favorite hobby?",
+            options: ["Reading", "Traveling", "Cooking", "Gardening"],
+            answer: 1
+          },
+          {
+            question: "What is my dream job?",
+            options: ["Doctor", "Engineer", "Artist", "Pilot"],
+            answer: 1
+          },
+          {
+            question: "What is my favorite food?",
+            options: ["Pizza", "Sushi", "Burger", "Pasta"],
+            answer: 3
+          },
+          {
+            question: "What is my favorite movie genre?",
+            options: ["Action", "Romance", "Comedy", "Horror"],
+            answer: 3
+          }
+        ];
+        let currentQuiz = 0;
+        let score = 0;
+        function updateQuizProgress() {
+          const percent = Math.round((currentQuiz / quizData.length) * 100);
+          document.getElementById('quiz-progress-bar').style.width = percent + '%';
+        }
+
+        function showResult() {
+          let msg = '';
+          if (currentQuiz === quizData.length) {
+            msg = "You finished the quiz! ";
+            if (score === quizData.length) {
+              msg += "Wow! You know me perfectly! 💖";
+            } else if (score > quizData.length / 2) {
+              msg += "Great job! You know me well! 😊";
+            } else {
+              msg += "It's okay, we can make more memories together! 💕";
+            }
+          }
+          document.getElementById('quiz-question').textContent = "Quiz Finished!";
+          document.getElementById('quiz-options').innerHTML = "";
+          document.getElementById('quiz-next').style.display = 'none';
+          document.getElementById('quiz-result').textContent = `Your score: ${score}/${quizData.length}\n${msg}`;
+          updateQuizProgress();
+        }
+
+        function loadQuiz() {
+          const questionEl = document.getElementById('quiz-question');
+          const optionsEl = document.getElementById('quiz-options');
+          const nextBtn = document.getElementById('quiz-next');
+          const progressBar = document.getElementById('quiz-progress-bar');
+
+          // Resetting state
+          nextBtn.style.display = 'none';
+          optionsEl.innerHTML = '';
+          questionEl.style.color = '#d16ba5';
+          progressBar.style.width = '0';
+
+          if (currentQuiz < quizData.length) {
+            const data = quizData[currentQuiz];
+            questionEl.textContent = data.question;
+
+            data.options.forEach((option, index) => {
+              const btn = document.createElement('button');
+              btn.className = 'button';
+              btn.textContent = option;
+              btn.onclick = () => selectOption(index);
+              optionsEl.appendChild(btn);
+            });
+          } else {
+            showResult();
+          }
+          updateQuizProgress();
+        }
+
+        function selectOption(selected) {
+          const data = quizData[currentQuiz];
+          const questionEl = document.getElementById('quiz-question');
+          const optionsEl = document.getElementById('quiz-options');
+          const nextBtn = document.getElementById('quiz-next');
+          const progressBar = document.getElementById('quiz-progress-bar');
+
+          // Disable all options
+          Array.from(optionsEl.children).forEach(btn => {
+            btn.classList.add('disabled');
+            btn.onclick = null;
+          });
+
+          if (selected === data.answer) {
+            // Correct answer
+            questionEl.style.color = '#4CAF50';
+            score++;
+          } else {
+            // Wrong answer
+            questionEl.style.color = '#F44336';
+          }
+
+          // Update progress bar
+          progressBar.style.width = ((currentQuiz + 1) / quizData.length * 100) + '%';
+
+          nextBtn.style.display = 'block';
+        }
+
+        document.getElementById('quiz-next').onclick = () => {
+          currentQuiz++;
+          loadQuiz();
+        };
+
+        document.getElementById('quiz-close').onclick = () => {
+          document.getElementById('quiz-overlay').style.display = 'none';
+          currentQuiz = 0;
+        };
+
+        document.getElementById('quiz-btn').onclick = () => {
+          currentQuiz = 0;
+          score = 0;
+          document.getElementById('quiz-overlay').style.display = 'flex';
+          loadQuiz();
+        };
+
+        // Scratch card functionality
+const canvas = document.getElementById('scratch-card');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = "#ee9ca7";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.font = "1.3rem Pacifico";
+ctx.fillStyle = "#fff";
+ctx.fillText("Scratch here!", 90, 60);
+
+let scratched = 0;
+canvas.addEventListener('mousemove', scratch);
+canvas.addEventListener('touchmove', scratch);
+
+function scratch(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(x, y, 18, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.globalCompositeOperation = 'source-over';
+  scratched++;
+  if (scratched > 60) {
+    canvas.style.display = 'none';
+    document.getElementById('secret-message').style.display = 'block';
+  }
+}
+
+// Confetti function
+function launchConfetti() {
+  for (let i = 0; i < 40; i++) {
+    const conf = document.createElement('div');
+    conf.textContent = ['💖','💘','💕','💗','💓','💞'][Math.floor(Math.random()*6)];
+    conf.style.position = 'fixed';
+    conf.style.left = Math.random() * 100 + 'vw';
+    conf.style.top = '-40px';
+    conf.style.fontSize = (24 + Math.random() * 16) + 'px';
+    conf.style.opacity = 0.8;
+    conf.style.pointerEvents = 'none';
+    conf.style.transition = 'transform 2.5s linear, opacity 2.5s linear';
+    document.body.appendChild(conf);
+    setTimeout(() => {
+      conf.style.transform = `translateY(${window.innerHeight + 60}px) rotate(${Math.random() * 360}deg)`;
+      conf.style.opacity = 0;
+    }, 10);
+    setTimeout(() => conf.remove(), 2600);
+  }
+}
+    </script>
+</body>
+</html>
